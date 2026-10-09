@@ -4,18 +4,18 @@
 //   to `self` as an argument, rather than taking ownership of it.
 
 pub struct Ticket {
-    title: String,
+    标题: String,
     description: String,
     status: String,
 }
 
 impl Ticket {
-    pub fn new(title: String, description: String, status: String) -> Ticket {
-        if title.is_empty() {
-            panic!("Title cannot be empty");
+    pub fn new(标题: String, description: String, status: String) -> Ticket {
+        if 标题.is_empty() {
+            panic!("标题 cannot be empty");
         }
-        if title.len() > 50 {
-            panic!("Title cannot be longer than 50 bytes");
+        if 标题.len() > 50 {
+            panic!("标题 cannot be longer than 50 bytes");
         }
         if description.is_empty() {
             panic!("Description cannot be empty");
@@ -28,22 +28,22 @@ impl Ticket {
         }
 
         Ticket {
-            title,
+            标题,
             description,
             status,
         }
     }
 
-    pub fn title(self) -> String {
-        self.title
+    pub fn 标题(&self) -> &String {
+        &self.标题
     }
 
-    pub fn description(self) -> String {
-        self.description
+    pub fn description(&self) -> &String {
+        &self.description
     }
 
-    pub fn status(self) -> String {
-        self.status
+    pub fn status(&self) -> &String {
+        &self.status
     }
 }
 
@@ -53,11 +53,11 @@ mod tests {
 
     #[test]
     fn works() {
-        let ticket = Ticket::new("A title".into(), "A description".into(), "To-Do".into());
+        let ticket = Ticket::new("A 标题".into(), "A description".into(), "To-Do".into());
         // If you change the signatures as requested, this should compile:
         // we can call these methods one after the other because they borrow `self`
         // rather than taking ownership of it.
-        assert_eq!(ticket.title(), "A title");
+        assert_eq!(ticket.标题(), "A 标题");
         assert_eq!(ticket.description(), "A description");
         assert_eq!(ticket.status(), "To-Do");
     }
